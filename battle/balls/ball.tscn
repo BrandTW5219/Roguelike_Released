@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpsu7uf7ug7cw"]
+
+[ext_resource type="Script" path="res://battle/balls/ball.gd" id="1_6q1f3"]
+[ext_resource type="Texture2D" uid="uid://cp07tec84w48v" path="res://object/bat/bat_gray.png" id="2_k17wo"]
+[ext_resource type="Texture2D" uid="uid://617niab1hyvj" path="res://battle/balls/ornamented_arrow_alpha.png" id="3_rp6gw"]
+[ext_resource type="Script" path="res://battle/balls/health_bar/health_bar.gd" id="4_5tpnr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g83n5"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpeu5"]
+radius = 100.0
+
+[sub_resource type="Gradient" id="Gradient_y2awd"]
+interpolation_mode = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ovlqu"]
+gradient = SubResource("Gradient_y2awd")
+width = 106
+height = 16
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_swg1e"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l22qj"]
+gradient = SubResource("Gradient_swg1e")
+width = 100
+height = 10
+
+[node name="Ball" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_g83n5")
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_6q1f3")
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fpeu5")
+
+[node name="Image" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_k17wo")
+hframes = 4
+vframes = 6
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+
+[node name="Arrow" type="Node2D" parent="RayCast2D"]
+visible = false
+
+[node name="ArrowImage" type="Sprite2D" parent="RayCast2D/Arrow"]
+position = Vector2(0, -130)
+texture = ExtResource("3_rp6gw")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -53.0
+offset_top = 70.0
+offset_right = 53.0
+offset_bottom = 86.0
+value = 100.0
+texture_under = SubResource("GradientTexture2D_ovlqu")
+texture_progress = SubResource("GradientTexture2D_l22qj")
+texture_progress_offset = Vector2(3, 3)
+script = ExtResource("4_5tpnr")
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

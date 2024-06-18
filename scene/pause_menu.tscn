@@ -1,0 +1,161 @@
+[gd_scene load_steps=3 format=3 uid="uid://db041tw4y2lkt"]
+
+[ext_resource type="Script" path="res://scene/pause_menu.gd" id="1_t7dyw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0na1j"]
+font_size = 50
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+layer = 100
+script = ExtResource("1_t7dyw")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "這是一個 roguelike"
+label_settings = SubResource("LabelSettings_0na1j")
+
+[node name="MainVBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainVBoxContainer"]
+layout_mode = 2
+text = "繼續遊戲"
+
+[node name="SettingButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainVBoxContainer"]
+layout_mode = 2
+text = "設定"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainVBoxContainer"]
+layout_mode = 2
+text = "退出遊戲"
+
+[node name="SettingVBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "返回"
+
+[node name="Audio" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/Audio"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "音量"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HScrollBar" type="HScrollBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/Audio"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 10.0
+step = 1.0
+value = 5.0
+
+[node name="InputKey" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Up" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Up"]
+layout_mode = 2
+text = "UP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Up"]
+layout_mode = 2
+text = "W"
+alignment = 1
+editable = false
+
+[node name="Left" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Left"]
+layout_mode = 2
+text = "LEFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Left"]
+layout_mode = 2
+text = "A"
+alignment = 1
+editable = false
+
+[node name="Down" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Down"]
+layout_mode = 2
+text = "DOWN
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Down"]
+layout_mode = 2
+text = "S"
+alignment = 1
+editable = false
+
+[node name="Right" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Right"]
+layout_mode = 2
+text = "RIGHT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Right"]
+layout_mode = 2
+text = "D"
+alignment = 1
+editable = false
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainVBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainVBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainVBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Up/LineEdit" to="." method="_on_up_line_edit_focus_entered"]
+[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Left/LineEdit" to="." method="_on_left_line_edit_focus_entered"]
+[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Down/LineEdit" to="." method="_on_down_line_edit_focus_entered"]
+[connection signal="focus_entered" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingVBoxContainer/InputKey/Right/LineEdit" to="." method="_on_right_line_edit_focus_entered"]

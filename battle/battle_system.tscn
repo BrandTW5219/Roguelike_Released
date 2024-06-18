@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8k35rranlktq"]
+
+[ext_resource type="Script" path="res://battle/battle_system.gd" id="1_j8nyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1ope"]
+size = Vector2(3600, 1000)
+
+[node name="BattleSystem" type="CanvasLayer"]
+script = ExtResource("1_j8nyy")
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Field"]
+points = PackedVector2Array(0, 0, 1600, 0, 1600, 675, 0, 675, 0, 0)
+
+[node name="Wall" type="StaticBody2D" parent="Field"]
+position = Vector2(800, -500)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Wall"]
+shape = SubResource("RectangleShape2D_m1ope")
+
+[node name="Wall2" type="StaticBody2D" parent="Field"]
+position = Vector2(800, 1175)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Wall2"]
+shape = SubResource("RectangleShape2D_m1ope")
+
+[node name="Wall3" type="StaticBody2D" parent="Field"]
+position = Vector2(2100, 337.5)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Wall3"]
+shape = SubResource("RectangleShape2D_m1ope")
+
+[node name="Wall4" type="StaticBody2D" parent="Field"]
+position = Vector2(-500, 337.5)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Wall4"]
+shape = SubResource("RectangleShape2D_m1ope")
+
+[node name="Balls" type="Node2D" parent="Field"]
+unique_name_in_owner = true
+position = Vector2(800, 450)
+
+[node name="StartButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 1350.0
+offset_top = 737.5
+offset_right = 1450.0
+offset_bottom = 837.5
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "開始"
+
+[node name="Cards" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BallStopChecker" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.016
+autostart = true
+
+[connection signal="button_down" from="StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="child_entered_tree" from="Cards" to="." method="_on_cards_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Cards" to="." method="_on_cards_child_exiting_tree"]
+[connection signal="timeout" from="BallStopChecker" to="." method="_on_ball_stop_checker_timeout"]

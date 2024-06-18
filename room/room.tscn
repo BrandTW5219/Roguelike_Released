@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://df7kctx4qoctb"]
+
+[ext_resource type="Texture2D" uid="uid://cblw27lx7wl8r" path="res://room/地面.png" id="2_b8jdc"]
+[ext_resource type="Texture2D" uid="uid://d0ku56sjp555x" path="res://room/牆壁頂面.png" id="4_indhf"]
+[ext_resource type="Texture2D" uid="uid://bfq560egewiir" path="res://room/障礙物-柱子.png" id="5_jjpr1"]
+[ext_resource type="Script" path="res://room/room.gd" id="10_yo414"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1437y"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqtow"]
+texture = ExtResource("2_b8jdc")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u43lp"]
+texture = ExtResource("4_indhf")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4tw7"]
+texture = ExtResource("5_jjpr1")
+texture_region_size = Vector2i(64, 64)
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_s16fr"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_1437y")
+sources/10 = SubResource("TileSetAtlasSource_iqtow")
+sources/12 = SubResource("TileSetAtlasSource_u43lp")
+sources/13 = SubResource("TileSetAtlasSource_y4tw7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odg5n"]
+size = Vector2(1152, 640)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtoml"]
+size = Vector2(128, 128)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("10_yo414")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_s16fr")
+format = 2
+layer_0/name = "地面"
+layer_0/tile_data = PackedInt32Array(-262153, 10, 0, -196617, 10, 0, -131081, 10, 0, -65545, 10, 0, -9, 10, 0, 65527, 10, 0, 131063, 10, 0, 196599, 10, 0, 262135, 10, 0, 327671, 10, 0, -262152, 10, 0, -196616, 10, 0, -131080, 10, 0, -65544, 10, 0, -8, 10, 0, 65528, 10, 0, 131064, 10, 0, 196600, 10, 0, 262136, 10, 0, 327672, 10, 0, -262151, 10, 0, -196615, 10, 0, -131079, 10, 0, -65543, 10, 0, -7, 10, 0, 65529, 10, 0, 131065, 10, 0, 196601, 10, 0, 262137, 10, 0, 327673, 10, 0, -262150, 10, 0, -196614, 10, 0, -131078, 10, 0, -65542, 10, 0, -6, 10, 0, 65530, 10, 0, 131066, 10, 0, 196602, 10, 0, 262138, 10, 0, 327674, 10, 0, -262149, 10, 0, -196613, 10, 0, -131077, 10, 0, -65541, 10, 0, -5, 10, 0, 65531, 10, 0, 131067, 10, 0, 196603, 10, 0, 262139, 10, 0, 327675, 10, 0, -262148, 10, 0, -196612, 10, 0, -131076, 10, 0, -65540, 10, 0, 65532, 10, 0, 131068, 10, 0, 196604, 10, 0, 262140, 10, 0, 327676, 10, 0, -262147, 10, 0, -196611, 10, 0, -131075, 10, 0, -65539, 10, 0, -3, 10, 0, 65533, 10, 0, 131069, 10, 0, 196605, 10, 0, 262141, 10, 0, 327677, 10, 0, -262146, 10, 0, -196610, 10, 0, -131074, 10, 0, -65538, 10, 0, -2, 10, 0, 65534, 10, 0, 131070, 10, 0, 196606, 10, 0, 327678, 10, 0, -262145, 10, 0, -196609, 10, 0, -131073, 10, 0, -65537, 10, 0, -1, 10, 0, 65535, 10, 0, 131071, 10, 0, 196607, 10, 0, 262143, 10, 0, 327679, 10, 0, -327680, 10, 0, -262144, 10, 0, -196608, 10, 0, -131072, 10, 0, -65536, 10, 0, 0, 10, 0, 65536, 10, 0, 131072, 10, 0, 196608, 10, 0, 262144, 10, 0, -327679, 10, 0, -262143, 10, 0, -196607, 10, 0, -131071, 10, 0, -65535, 10, 0, 1, 10, 0, 65537, 10, 0, 131073, 10, 0, 196609, 10, 0, 262145, 10, 0, -327678, 10, 0, -262142, 10, 0, -196606, 10, 0, -131070, 10, 0, -65534, 10, 0, 2, 10, 0, 65538, 10, 0, 131074, 10, 0, 196610, 10, 0, 262146, 10, 0, -327677, 10, 0, -262141, 10, 0, -196605, 10, 0, -131069, 10, 0, -65533, 10, 0, 3, 10, 0, 65539, 10, 0, 131075, 10, 0, 196611, 10, 0, 262147, 10, 0, -327676, 10, 0, -262140, 10, 0, -196604, 10, 0, -131068, 10, 0, -65532, 10, 0, 4, 10, 0, 65540, 10, 0, 131076, 10, 0, 196612, 10, 0, 262148, 10, 0, -327675, 10, 0, -262139, 10, 0, -196603, 10, 0, -131067, 10, 0, -65531, 10, 0, 5, 10, 0, 65541, 10, 0, 131077, 10, 0, 196613, 10, 0, 262149, 10, 0, -327674, 10, 0, -262138, 10, 0, -196602, 10, 0, -131066, 10, 0, -65530, 10, 0, 6, 10, 0, 65542, 10, 0, 131078, 10, 0, 196614, 10, 0, 262150, 10, 0, -327673, 10, 0, -262137, 10, 0, -196601, 10, 0, -131065, 10, 0, -65529, 10, 0, 7, 10, 0, 65543, 10, 0, 131079, 10, 0, 196615, 10, 0, 262151, 10, 0, -327672, 10, 0, -262136, 10, 0, -196600, 10, 0, -131064, 10, 0, -65528, 10, 0, 8, 10, 0, 65544, 10, 0, 131080, 10, 0, 196616, 10, 0, 262152, 10, 0, 262142, 10, 0, -4, 10, 0)
+layer_1/name = "牆壁"
+layer_1/tile_data = PackedInt32Array(-262153, 12, 0, -262152, 12, 0, -262151, 12, 0, -262150, 12, 0, -262149, 12, 0, -262148, 12, 0, -262147, 12, 0, -262146, 12, 0, -262145, 12, 0, -327680, 12, 0, -327679, 12, 0, -327678, 12, 0, -327677, 12, 0, -327676, 12, 0, -327675, 12, 0, -327674, 12, 0, -327673, 12, 0, -327672, 12, 0, -262136, 12, 0, -196600, 12, 0, -131064, 12, 0, -65528, 12, 0, 8, 12, 0, 65544, 12, 0, 131080, 12, 0, 196616, 12, 0, 262152, 12, 0, 327671, 12, 0, 327672, 12, 0, 327673, 12, 0, 327674, 12, 0, 327675, 12, 0, 327676, 12, 0, 327677, 12, 0, 327678, 12, 0, 327679, 12, 0, 262144, 12, 0, 262145, 12, 0, 262146, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 12, 0, 262151, 12, 0, -196617, 12, 0, -131081, 12, 0, -65545, 12, 0, -9, 12, 0, 65527, 12, 0, 131063, 12, 0, 196599, 12, 0, 262135, 12, 0)
+layer_2/name = "障礙物"
+layer_2/z_index = 1
+layer_2/tile_data = PackedInt32Array(131070, 13, 0, 65537, 13, 0, 131074, 13, 0, 196605, 13, 0, 262140, 13, 0, 196611, 13, 0, 262141, 13, 0, 196606, 13, 0, 262142, 13, 0, 131073, 13, 0, 196609, 13, 0, 196610, 13, 0)
+
+[node name="RoomTypeSetter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomTypeSetter"]
+shape = SubResource("RectangleShape2D_odg5n")
+
+[node name="Portal" type="Area2D" parent="."]
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
+position = Vector2(0, 192)
+shape = SubResource("RectangleShape2D_rtoml")
+
+[node name="Label" type="Label" parent="Portal"]
+offset_left = -64.0
+offset_top = 128.0
+offset_right = 64.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 48
+text = "傳送門"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Line2D" type="Line2D" parent="Portal"]
+points = PackedVector2Array(-64, 128, 64, 128, 64, 256, -64, 256)
+closed = true
+
+[connection signal="body_entered" from="RoomTypeSetter" to="." method="_on_room_type_setter_body_entered"]
+[connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://drv367igqfxwx"]
+
+[ext_resource type="Script" path="res://scene/game.gd" id="1_2cvxg"]
+[ext_resource type="PackedScene" uid="uid://btw8o3scvcmpe" path="res://object/player/player.tscn" id="2_u6djd"]
+[ext_resource type="PackedScene" uid="uid://dmuc1rpox3vg2" path="res://scene/end_game_screen.tscn" id="3_nm2cs"]
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_2cvxg")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_u6djd")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="EndGameScreen" parent="." instance=ExtResource("3_nm2cs")]
+visible = false

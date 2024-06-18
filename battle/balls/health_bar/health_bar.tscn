@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmdb552epyoyn"]
+
+[ext_resource type="Script" path="res://battle/balls/health_bar/health_bar.gd" id="1_ttbj3"]
+
+[sub_resource type="Gradient" id="Gradient_y2awd"]
+interpolation_mode = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ovlqu"]
+gradient = SubResource("Gradient_y2awd")
+width = 106
+height = 16
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_swg1e"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l22qj"]
+gradient = SubResource("Gradient_swg1e")
+width = 100
+height = 10
+
+[node name="HealthBar" type="TextureProgressBar"]
+z_index = 1
+offset_left = -53.0
+offset_top = 13.0
+offset_right = 53.0
+offset_bottom = 29.0
+value = 100.0
+texture_under = SubResource("GradientTexture2D_ovlqu")
+texture_progress = SubResource("GradientTexture2D_l22qj")
+texture_progress_offset = Vector2(3, 3)
+script = ExtResource("1_ttbj3")
